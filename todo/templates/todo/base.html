@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Title{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'todo/styles.css' %}">
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'todo:todo_list' %}">Todo List</a></li>
+            <li><a href="{% url 'todo:todo_create' %}">Todo Create</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
 {% block content %}
 <p>Content</p>
