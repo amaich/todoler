@@ -1,6 +1,6 @@
 {% extends 'todo/base.html' %}
 {% block content %}
     {% for todo in todos %}
-            <p><a href="{% url 'todo_detail' todo.id %}">{{ todo.name }}</a>  Completed: {{ todo.completed }}</p>
+            <p><a href="{% url 'todo:todo_detail' todo.id %}">{{ todo.name }}</a>  Completed: {{ todo.completed }}</p>
     {% endfor %}
 {% endblock content %}

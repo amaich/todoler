@@ -1,7 +1,5 @@
-import time
 import logging
-from django.http import request
-from django.http import response
+from datetime import datetime
 
 
 class RequestLoggingMiddleware:
@@ -11,13 +9,14 @@ class RequestLoggingMiddleware:
 
         logging.basicConfig(level=logging.INFO, filename="todo_log.log")
 
-    def __call__(self, req: request):
+    def __call__(self, req):
+        logging.info(f'{datetime.now()} ===> Request: {req.method} {req.get_host()}{req.path}')
+        logging.debug(f'{datetime.now()} Headers: {req.headers}')
+        logging.debug(f'{datetime.now()} Content params: {req.content_params}')
+        logging.debug(f'{datetime.now()} Body: {req.body}')
+
         resp = self.get_response(req)
 
-        logging.info(f'===> Request: {req.method} {req.get_host()}{req.path}')
-        logging.debug(f'Headers: {req.headers}')
-        logging.info(f'Content params: {req.content_params}')
-        logging.info(f'Body: {req.body}')
-        logging.info(f'Status code: {resp.status_code}')
+        logging.info(f'{datetime.now()} Status code: {resp.status_code}')
 
         return resp
