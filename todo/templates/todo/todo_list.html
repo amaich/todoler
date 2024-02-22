@@ -1,10 +1,6 @@
 {% extends 'todo/base.html' %}
 {% block content %}
     {% for todo in todos %}
-        {% if todo.completed == False %}
-            <p>{{ todo }} (Not completed)</p>
-        {% else %}
-            <p>{{ todo }} (Completed)</p>
-        {% endif %}
+            <p><a href="{% url 'todo_detail' todo.id %}">{{ todo.name }}</a>  Completed: {{ todo.completed }}</p>
     {% endfor %}
 {% endblock content %}
